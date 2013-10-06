@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ToDo_01</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="author" content="The Chopping Block, Inc." />
+	<meta name="geo.country" content="US" />
+	<meta name="dc.language" content="en" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	
+
+	
+	<style type="text/css" media="screen">		
+		/*local styles if any (quick tests and local only overrides)*/
+		
+		.completed{
+			text-decoration: line-through;
+			color:#C30;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="wrap" >
+		Project: ToDo_01
+		
+		<ol>
+			<li>Append tasks entered in the field to the end of the list</li>
+			<li>Clicking on a task should toggle the completed class</li>
+			<li>After clicking Add Task, the input field should be emptied</li>
+		</ol>
+		
+		<div>
+       
+        <input type="text" value="" name="taskinput" id="new_task" > <button id="add_task">Add Task</button>
+        
+        </div>
+		
+		<ul id="tasks">
+		
+		</ul>
+		
+	</div>
+	<script type="text/javascript" charset="utf-8">
+		
+		// 1. Javascript should setup the event listener (onclicks) for the tasks that already exist
+		// 2. Something weird is going to happen when you update the tasks UL, all of the onclicks are going to erased
+		//    Every time you add something to the list, you need to redefine the onclicks for all of them
+		
+	
+		
+		
+		
+		var addTaskButton = document.querySelector("#add_task");
+		
+		
+		addTaskButton.onclick = function(){
+			
+			var taskInput = document.querySelector("#new_task");
+			
+			var tasksList = document.querySelector("#tasks");
+			
+			tasksList.innerHTML = tasksList.innerHTML +  "<li>" + taskInput.value + "</li>";
+			
+		}
+		
+		
+ 
+		
+		
+		var els = document.querySelectorAll("#tasks");
+		
+		
+		for (var i=0; i < els.length; i++) {
+			
+			// Adding the event listener to each of the divs
+			els[i].onclick = function(event){
+				console.dir(event);
+
+				// The thing that was clicked on is
+				event.target;
+
+				var clickedElement = event.target;
+				// event.target is the same type as what you get from using querySelector
+
+				clickedElement.classList.toggle("completed");
+			}
+			
+		};
+		
+	</script>
+</body>
+</html>
